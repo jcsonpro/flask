@@ -1,5 +1,5 @@
 # flask
-### flask 를 이용한 게시판 제작
+### flask 를 이용한 게시판 제작 (Windows 개발환경 기준)
 
 
 
@@ -117,3 +117,29 @@ $ dir
 - 설치완료후 "Server's certificate is not trusted " 오류 해결
   - File > Settings > Tools > Server Certificates > Accept non-trusted certificates automatically 체크
   - Appearance & Behavior > System Settings > Updates > Use Secure connection 체크 해제
+  
+- trusted-host 옵션 지정
+  - 업무망에서 플라스크등 파이썬 패키지를 설치할때, ssl 오류가 발생한다
+  
+  - c:\user\<사용자명>\pip\pip.ini 파일을 만들어서 해결
+  
+    ```bash
+    [global]
+    #### 이부분은 혹시 몰라서 기록해둔다
+    # proxy = http://PROXYSERVERIP:PORT    
+    # cert = C:\\CERTIFICATION.cer
+    
+    ### 아래부분만 기록해도 해결됬음
+    trusted-host = pypi.python.org
+                   pypi.org
+                   files.pythonhosted.org
+    ```
+  
+  - pip도 최신버전으로 업그레이드 한다
+  
+    ```bash
+    > python -m pip install --upgrade pip
+    ```
+  
+    
+
