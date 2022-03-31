@@ -6,6 +6,19 @@ from .. import db
 from ..forms import UserCreateForm, UserLoginForm
 from ..models import User
 
+import functools
+
+
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.signin'))
+        return view(**kwargs)
+
+    return wrapped_view
+
+
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 
