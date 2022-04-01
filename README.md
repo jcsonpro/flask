@@ -141,7 +141,31 @@ $ dir
     > python -m pip install --upgrade pip
     ```
   
-    
+- 가상환경 인터프리터 설정
+  - windows : D:\workspace\flask\venv\Scripts\python.exe
+  - (OLD) mac : /Users/jongchanson/.pyenv/versions/3.8.12/bin/python3.8
+    - mac은 python 버전관리인 pyenv가 적용되어 있으므로, 인터프리터를 .pyenv/versions/3.8.12/bin/python3.8로 설정
+  - (NEW) mac : /workspace/flask/venv/bin/python
+    ```bash
+    # pyenv를 이용해서, python 3.8.5를 설치한다
+    > pyenv install 3.8.5
+    > pyenv global 3.8.5
+    > pyenv versions
+    ```
+  - github에서 flask.git을 clone한다
+  - 프로젝트 디렉토리(flask)에 가상환경을 생성한다
+    ```bash
+    python -m venv flask/venv
+    ```
+  - mac pycharm에서 flask 디렉터리를 "열기"
+
+<<<<<<< HEAD
 
 
-
+=======
+- windows에서 pip 패키지 requirement.txt 작성
+  ```bash
+  pip freeze > requirement.txt
+  ```
+- mac에서 설치목록으로 환경 생성 (CLI 가 venv 환경인지 확인해야 한다)
+>>>>>>> fd336234da8ff44c20b61d4988d9d61c185f8495
