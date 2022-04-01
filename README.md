@@ -155,17 +155,20 @@ $ dir
   - github에서 flask.git을 clone한다
   - 프로젝트 디렉토리(flask)에 가상환경을 생성한다
     ```bash
-    python -m venv flask/venv
+    python3 -m venv flask/venv
     ```
   - mac pycharm에서 flask 디렉터리를 "열기"
 
-<<<<<<< HEAD
-
-
-=======
 - windows에서 pip 패키지 requirement.txt 작성
   ```bash
   pip freeze > requirement.txt
   ```
+  
 - mac에서 설치목록으로 환경 생성 (CLI 가 venv 환경인지 확인해야 한다)
->>>>>>> fd336234da8ff44c20b61d4988d9d61c185f8495
+
+  ```bash
+  pip install -r requirements.txt
+  ```
+
+  
+

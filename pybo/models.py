@@ -1,8 +1,8 @@
 from pybo import db
 
-question_voter = db.Table(
-    
-)
+# question_voter = db.Table(
+#
+# )
 
 
 
@@ -14,8 +14,8 @@ class Question(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('question_set'))
     modify_date = db.Column(db.DateTime(), nullable=True)
-    voter = db.relationship('User', secondary=question_voter,
-                            backref=db.backref('question_voter_set'))
+    # voter = db.relationship('User', secondary=question_voter,
+    #                         backref=db.backref('question_voter_set'))
 
 
 class Answer(db.Model):
@@ -28,8 +28,8 @@ class Answer(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id', ondelete='CASCADE'), nullable=False)
     user = db.relationship('User', backref=db.backref('answer_set'))
     modify_date = db.Column(db.DateTime(), nullable=True)
-    voter = db.relationship('User', secondary=question_voter,
-                            backref=db.backref('question_voter_set'))
+    # voter = db.relationship('User', secondary=question_voter,
+    #                         backref=db.backref('question_voter_set'))
 
 
 class User(db.Model):
