@@ -1,10 +1,13 @@
 from pybo import db
 
+<<<<<<< HEAD
 # question_voter = db.Table(
 #
 # )
 
 
+=======
+>>>>>>> origin
 
 class Question(db.Model):
     id = db.Column(db.Integer, primary_key=True)
