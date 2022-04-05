@@ -159,6 +159,13 @@ $ dir
     ```
   - mac pycharm에서 flask 디렉터리를 "열기"
 
+### 다중 작업환경 구성
+- 각 환경별 레포지터리명은 main으로 통일해도 된다.
+- push와 pull 만 열심히 하면 충돌은 일어나지 않는다
+- git log --oneline 으로 commit log를  확인이 가능하고, 되돌리는것도 가능
+
+- 파이썬 프로젝트는 별도의 package.json 파일이 없는것 같다. 
+
 - windows에서 pip 패키지 requirement.txt 작성
   ```bash
   pip freeze > requirement.txt
@@ -169,6 +176,7 @@ $ dir
   ```bash
   pip install -r requirements.txt
   ```
+
 
   
 
