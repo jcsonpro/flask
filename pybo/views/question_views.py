@@ -6,17 +6,39 @@ from werkzeug.utils import redirect
 from .auth_views import login_required
 from .. import db
 from ..forms import QuestionForm, AnswerForm
-from ..models import Question
+from ..models import Question, Answer, User
 
 bp = Blueprint('question', __name__, url_prefix='/question')
 
 
 @bp.route('/list/')
 def _list():
+    # 입력 파라미터
     page = request.args.get('page', type=int, default=1)
+    kw = request.args.get('kw', type=str, default='')
+
+    # 조회
     question_list = Question.query.order_by(Question.create_date.desc())
+
+    if kw:
+        search = '%%{}%%'.format(kw)
+        sub_query = db.session.query(
+            Answer.question_id, Answer.content, User.username).join(
+            User, Answer.user_id == User.id).subquery()
+        question_list = question_list \
+            .join(User) \
+            .outerjoin(sub_query, sub_query.c.question_id == Question.id) \
+            .filter(Question.subject.ilike(search) |
+                    Question.content.ilike(search) |
+                    User.username.ilike(search) |
+                    sub_query.c.content.ilike(search) |
+                    sub_query.c.username.ilike(search)
+                    ) \
+            .distinct()
+
+    # 페이징
     question_list = question_list.paginate(page, per_page=10)
-    return render_template('question/question_list.html', question_list=question_list)
+    return render_template('question/question_list.html', question_list=question_list, page=page, kw=kw)
 
 
 @bp.route('/detail/<int:question_id>/')
