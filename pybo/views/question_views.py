@@ -22,8 +22,7 @@ def _list():
 
     if kw:
         search = '%%{}%%'.format(kw)
-        sub_query = db.session.query(
-            Answer.question_id, Answer.content, User.username).join(
+        sub_query = db.session.query(Answer.question_id, Answer.content, User.username).join(
             User, Answer.user_id == User.id).subquery()
         question_list = question_list \
             .join(User) \
@@ -35,7 +34,6 @@ def _list():
                     sub_query.c.username.ilike(search)
                     ) \
             .distinct()
-
     # 페이징
     question_list = question_list.paginate(page, per_page=10)
     return render_template('question/question_list.html', question_list=question_list, page=page, kw=kw)
